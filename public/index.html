@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHABIKI</title>
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #4A6EF5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: visible !important;
+  }
+
+  .form-title {
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .form-container {
+    background: white;
+    border-radius: 10px;
+    padding: 40px;
+    width: 1300px;
+    max-width: 95%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: visible !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    overflow: visible !important;
+  }
+
+  .form-group {
+    flex: 1 1 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-group.half {
+    flex: 1 1 calc(50% - 10px);
+  }
+
+  .form-label {
+    display: block;
+    color: #666;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .form-input,
+  .form-select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    background: white;
+    color: #333;
+    position: relative;
+  }
+
+  .form-input:focus,
+  .form-select:focus {
+    outline: none;
+    border-color: #4A6EF5;
+  }
+
+  .form-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 12px;
+    padding-right: 35px;
+    color: #666;
+    position: relative;
+    z-index: 5;
+  }
+
+  /* 👇 This ensures dropdowns open directly under the select box */
+  select:focus {
+    z-index: 9999 !important;
+    position: relative;
+  }
+
+  /* Safari/Chrome embed fix */
+  select::-ms-expand {
+    display: none;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: #4A6EF5;
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+  }
+
+  .submit-btn:hover {
+    background: #3a57d9;
+  }
+</style>
+</head>
+<body>
+  <h1 class="form-title">SHABIKI</h1>
+  <div class="form-container">
+    <form name="submit-to-google-sheet">
+      <div class="form-row">
+        <div class="form-group half">
+          <label class="form-label" for="number">Number</label>
+          <input name="number" type="text" id="number" class="form-input" placeholder="Enter number" />
+        </div>
+        <div class="form-group half">
+          <label class="form-label" for="gender">Gender</label>
+          <select name="gender" id="gender" class="form-select">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="disposition1">Disposition 1</label>
+        <select name="disposition1" id="disposition1" class="form-select">
+          <option value="">Select Disposition 1</option>
+          <option value="How to place a bet on Sportsbook">How to place a bet on Sportsbook</option>
+          <option value="How to Register?">How to Register?</option>
+          <option value="How to Deposit Online">How to Deposit Online</option>
+          <option value="How to Deposit Via PayBILL">How to Deposit Via PayBILL</option>
+          <option value="How much can I win?">How much can I win?</option>
+          <option value="What is the maximum Stake?">What is the maximum Stake?</option>
+          <option value="What is the minimum Stake?"">What is the minimum Stake?"</option>
+          <option value="How to withdraw?">How to withdraw?</option>
+          <option value="What is cash out?">What is cash out?</option>
+          <option value="What is partial cash out?">What is partial cash out?</option>
+          <option value="How to place a multibet via SMS">How to place a multibet via SMS</option>
+          <option value="How to place a multibet Online">How to place a multibet Online</option>
+          <option value="How to place a Jackpot bet via SMS">How to place a Jackpot bet via SMS</option>
+          <option value="How to place a Jackpot bet online">How to place a Jackpot bet online</option>
+          <option value="How to place a Jackpot Combination bet">How to place a Jackpot Combination bet</option>
+          <option value="Cancelled/Postponed Matches">Cancelled/Postponed Matches</option>
+          <option value="Blank Call">Blank Call</option>
+          <option value="Customer Bulk Message Feedback">Customer Bulk Message Feedback</option>
+          <option value="Call Dropped">Call Dropped</option>
+          <option value="Can I get my money back if I don’t win?">Can I get my money back if I don’t win?</option>
+          <option value="Can I play online?">Can I play online?</option>
+          <option value="Can you send my Prize to another number">Can you send my Prize to another number</option>
+          <option value="Customer Compliments/ appreciates shabiki">Customer Compliments/ appreciates shabiki</option>
+          <option value="Delayed Cash Prize Payment">Delayed Cash Prize Payment</option>
+          <option value="Employment Request">Employment Request</option>
+          <option value="Seeking partnership with Shabiki">Seeking partnership with Shabiki</option>
+          <option value="Seeking Sponsorship">Seeking Sponsorship</option>
+          <option value="Seeking Loans">Seeking Loans</option>
+          <option value="Failed Message Delivery to short code 29063">Failed Message Delivery to short code 29063</option>
+          <option value="How do I bet with the money in Shabiki Account">How do I bet with the money in Shabiki Account</option>
+          <option value="How do I cancel/STOP my subscription? Will my account still be active?">How do I cancel/STOP my subscription? Will my account still be active?</option>
+          <option value="How do I check my balance?">How do I check my balance?</option>
+          <option value="How long is the ticket valid?">How long is the ticket valid?</option>
+          <option value="How much is the prize money for shabiki Jackpot?">How much is the prize money for shabiki Jackpot?</option>
+          <option value="How will I know that I have won the Jackpot">How will I know that I have won the Jackpot</option>
+          <option value="How will I be notified if I win?">How will I be notified if I win?</option>
+          <option value="How will I receive my money when I win?">How will I receive my money when I win?</option>
+          <option value="Inquiries on Excise Duty Tax">Inquiries on Excise Duty Tax</option>
+          <option value="Inquiries on With- Holding Tax">Inquiries on With- Holding Tax</option>
+          <option value="Mpesa Transaction Not Successful">Mpesa Transaction Not Successful</option>
+          <option value="Online Password Reset">Online Password Reset</option>
+          <option value="Shabiki Customer care Numbers">Shabiki Customer care Numbers</option>
+          <option value="Outbound customer follow up">Outbound customer follow up</option>
+          <option value="Customer Returning a missed call ">Customer Returning a missed call </option>
+          <option value="Re-subscription">Re-subscription</option>
+          <option value="Undelivered Betslip">Undelivered Betslip</option>
+          <option value="Which networks support these services?">Which networks support these services?</option>
+          <option value="Will the Jackpot Amount increase?">Will the Jackpot Amount increase?</option>
+          <option value="Inquiries on With Holding Tax - WHT">Inquiries on With Holding Tax - WHT</option>
+          <option value="What is a Game ID">What is a Game ID</option>
+          <option value="What is Live Betting?">What is Live Betting?</option>
+          <option value="Account Deactivation">Account Deactivation</option>
+          <option value="Bet History Sportsbook">Bet History Sportsbook</option>
+          <option value="Account Reactivation">Account Reactivation</option>
+          <option value="Bonus Inquiry (Welcome Bonus)">Bonus Inquiry (Welcome Bonus)</option>
+          <option value="Bonus Inquiry (Double Sunday Bonus)">Bonus Inquiry (Double Sunday Bonus)</option>
+          <option value="Cost of playing via SMS">Cost of playing via SMS</option>
+          <option value="Criteria for winner selection">Criteria for winner selection</option>
+          <option value="Delayed Bet via Mpesa">Delayed Bet via Mpesa</option>
+          <option value="Erroneous Mpesa Deposit-Reversal Request">Erroneous Mpesa Deposit-Reversal Request</option>
+          <option value="Failed registration">Failed registration</option>
+          <option value="How much is the prize money for shabiki Jackpot?">How much is the prize money for shabiki Jackpot?</option>
+          <option value="How to bet - Multibet">How to bet - Multibet</option>
+          <option value="How to bet - SingleBet">How to bet - SingleBet</option>
+          <option value="How to bet via MPesa">How to bet via MPesa</option>
+          <option value="How to get game ID">How to get game ID</option>
+          <option value="How to get Games">How to get Games</option>
+          <option value="How to play online">How to play online</option>
+          <option value="How to redeem free bet">How to redeem free bet</option>
+          <option value="How to view Game Results">How to view Game Results</option>
+          <option value="How will I be notified if I win?">How will I be notified if I win?</option>
+          <option value="Mpesa paybill queries">Mpesa paybill queries</option>
+          <option value="Office Location Request">Office Location Request</option>
+          <option value="Promotional Messages Feedback">Promotional Messages Feedback</option>
+          <option value="Registration Cost">Registration Cost</option>
+          <option value="Resend Deleted Betlips">Resend Deleted Betlips</option>
+          <option value="Seeking Loans">Seeking Loans</option>
+          <option value="Seeking partnership with Shabiki">Seeking partnership with Shabiki</option>
+          <option value="Types of bets">Types of bets</option>
+          <option value="Unsuccessful Bet">Unsuccessful Bet</option>
+          <option value="Website is unavailable - www.shabiki.com">Website is unavailable - www.shabiki.com</option>
+          <option value="When is resulting done">When is resulting done</option>
+          <option value="Which Mobile Networks support these services?">Which Mobile Networks support these services?</option>
+          <option value="Bonus Inquiry/Followup">Bonus Inquiry/Followup</option>
+          <option value="Bonus Inquiry (Welcome Bonus)">Bonus Inquiry (Welcome Bonus)</option>
+          <option value="Delayed Withdrawal">Delayed Withdrawal</option>
+          <option value="Delayed Deposit">Delayed Deposit</option>
+          <option value="Daily Maximum Payout">Daily Maximum Payout</option>
+          <option value="Supa Saturday - Cash back">Supa Saturday - Cash back</option>
+          <option value="Shabiki App Download">Shabiki App Download</option>
+          <option value="How to get games">How to get games</option>
+          <option value="How to view bet history">How to view bet history</option>
+          <option value="Wrong Number">Wrong Number</option>
+          <option value="Betting Shops inquiry">Betting Shops inquiry</option>
+          <option value="How do I bet with the money in Shabiki Account">How do I bet with the money in Shabiki Account</option>
+          <option value="How will I know that I have won the Jackpot">How will I know that I have won the Jackpot</option>
+          <option value="How will I be notified if I win?">How will I be notified if I win?</option>
+          <option value="Shabiki Customer Numbers">Shabiki Customer Numbers</option>
+          <option value="How to view Bet history">How to view Bet history</option>
+          <option value="How to Redeem Freebet">How to Redeem Freebet</option>
+          <option value="Freebet Validity">Freebet Validity</option>
+          <option value="Freebet Usage">Freebet Usage</option>
+          <option value="Happy Hour">Happy Hour</option>
+          <option value="Ongoing Promotions">Ongoing Promotions</option>
+          <option value="Account de-activation">Account de-activation</option>
+          <option value="System test-Sipline">System test-Sipline</option>
+          <option value="How to cancel bets">How to cancel bets</option>
+          <option value="Pick 6 Inquiries">Pick 6 Inquiries</option>
+          <option value="Bet History">Bet History</option>
+          <option value="How to view Jackpot - Bet history">How to view Jackpot - Bet history</option>
+          <option value="How to view Jackpot - Results">How to view Jackpot - Results</option>
+          <option value="Criteria for Jackpot winners selection">Criteria for Jackpot winners selection</option>
+          <option value="How much is the Jackpot bonus">How much is the Jackpot bonus</option>
+          <option value="Can one place the jackpot using Double Chance">Can one place the jackpot using Double Chance</option>
+          <option value="Is there Mid-Week Jackpot">Is there Mid-Week Jackpot</option>
+          <option value="What is SJP?">What is SJP?</option>
+          <option value="SJP- How to Play">SJP- How to Play</option>
+          <option value="SJP- Cost of Playing">SJP- Cost of Playing</option>
+          <option value="SJP- When is Draw Done?">SJP- When is Draw Done?</option>
+          <option value="SJP- Prize Money">SJP- Prize Money</option>
+          <option value="SJP- Criteria for winner selection">SJP- Criteria for winner selection</option>
+          <option value="SJP- How will I know I have won?">SJP- How will I know I have won?</option>
+          <option value="SJP- Bonus">SJP- Bonus</option>
+          <option value="SJP-Bet History">SJP-Bet History</option>
+          <option value="SJP-How to place a bet via SMS">SJP-How to place a bet via SMS</option>
+          <option value="SJP- How will I receive my winnings?">SJP- How will I receive my winnings?</option>
+          <option value="SJP-Bet limit">SJP-Bet limit</option>
+          <option value="MJP-Bonus">MJP-Bonus</option>
+          <option value="MJP- Criteria for winner selection">MJP- Criteria for winner selection</option>
+          <option value="MJP- Cost of Playing">MJP- Cost of Playing</option>
+          <option value="What is MJP?">What is MJP?</option>
+          <option value="MJP - Prize Money">MJP - Prize Money</option>
+          <option value="MJP- How to Play">MJP- How to Play</option>
+          <option value="MJP-Bet History">MJP-Bet History</option>
+          <option value="MJP-Bet limit">MJP-Bet limit</option>
+          <option value="MJP-How to place a bet via SMS">MJP-How to place a bet via SMS</option>
+          <option value="MJP- How will I receive my winnings?">MJP- How will I receive my winnings?</option>
+          <option value="MJP- Prize Money">MJP- Prize Money</option>
+          <option value="MJP- When is Draw Done?">MJP- When is Draw Done?</option>
+          <option value="How to deposit in E-Wallet (Pay Bill)">How to deposit in E-Wallet (Pay Bill)</option>
+          <option value="How to deposit in E-Wallet (SMS)">How to deposit in E-Wallet (SMS)</option>
+          <option value="How to deposit in E-Wallet (Online)">How to deposit in E-Wallet (Online)</option>
+          <option value="Angukia Ki Shabiki Lottery-How to play.">Angukia Ki Shabiki Lottery-How to play.</option>
+          <option value="Angukia Ki Shabiki Lottery-Cost of playing.">Angukia Ki Shabiki Lottery-Cost of playing.</option>
+          <option value="Angukia Ki Shabiki Lottery-Prize Money">Angukia Ki Shabiki Lottery-Prize Money</option>
+          <option value="What is Angukia Ki Shabiki Lottery?">What is Angukia Ki Shabiki Lottery?</option>
+          <option value="Angukia Kishabiki Lottery Criteria for winner selection">Angukia Kishabiki Lottery Criteria for winner selection</option>
+          <option value="Angukia Ki Shabiki Lottery- When is the draw done">Angukia Ki Shabiki Lottery- When is the draw done</option>
+          <option value="Angukia Ki Shabiki Lottery-Bonus">Angukia Ki Shabiki Lottery-Bonus</option>
+          <option value="Angukia Ki Shabiki Lottery- Limit">Angukia Ki Shabiki Lottery- Limit</option>
+          <option value="Aviator- Cost of Playing">Aviator- Cost of Playing</option>
+          <option value="What is Aviator?">What is Aviator?</option>
+          <option value="Aviator - Prize Money">Aviator - Prize Money</option>
+          <option value="Aviator- How to Play">Aviator- How to Play</option>
+          <option value="Aviator - Delayed Cash prize settlement">Aviator - Delayed Cash prize settlement</option>
+          <option value="Aviator-Bet History">Aviator-Bet History</option>
+          <option value="Aviator-Bet limit">Aviator-Bet limit</option>
+          <option value="Jiomoshe na Jet X-How to play?">Jiomoshe na Jet X-How to play?</option>
+          <option value="Jiomoshe na Jet X-Cost of playing">Jiomoshe na Jet X-Cost of playing</option>
+          <option value="Jiomoshe na Jet X-Bet Limit">Jiomoshe na Jet X-Bet Limit</option>
+          <option value="Jiomoshe na Jet X-Bet History">Jiomoshe na Jet X-Bet History</option>
+          <option value="Jiomoshe na Jet X-Criteria for winner selection">Jiomoshe na Jet X-Criteria for winner selection</option>
+          <option value="Jiomoshe na Jet X-How will I receive my winnings?">Jiomoshe na Jet X-How will I receive my winnings?</option>
+          <option value="Jiomoshe na Jet X-Scoring Method">Jiomoshe na Jet X-Scoring Method</option>
+          <option value="Jiomoshe na Jet X-Bonus">Jiomoshe na Jet X-Bonus</option>
+          <option value="Kafunge Kichampe -How to play?">Kafunge Kichampe -How to play?</option>
+          <option value="Kafunge Kichampe -Cost of playing">Kafunge Kichampe -Cost of playing</option>
+          <option value="Kafunge Kichampe -Bet Limit">Kafunge Kichampe -Bet Limit</option>
+          <option value="Kafunge Kichampe -Bet History">Kafunge Kichampe -Bet History</option>
+          <option value="Kafunge Kichampe -Criteria for winner selection">Kafunge Kichampe -Criteria for winner selection</option>
+          <option value="Kafunge Kichampe -How will I receive my winnings?">Kafunge Kichampe -How will I receive my winnings?</option>
+          <option value="Kafunge Kichampe-Scoring Method">Kafunge Kichampe-Scoring Method</option>
+          <option value="Kafunge Kichampe-Bonus">Kafunge Kichampe-Bonus</option>
+          <option value="What is a free bet">What is a free bet</option>
+          <option value="How to get a free bet">How to get a free bet</option>
+          <option value="How to redeem free bet">How to redeem free bet</option>
+          <option value="Failed Redeeming free bet">Failed Redeeming free bet</option>
+          <option value="Check free bets Balance">Check free bets Balance</option>
+          <option value="Check free bets Balance">Check free bets Balance</option><option value="Check free bets Balance">Check free bets Balance</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="disposition2">Disposition 2</label>
+        <select name="disposition2" id="disposition2" class="form-select">
+          <option value="">Select Disposition 2</option>
+          <option value="How to place a bet on Sportsbook">How to place a bet on Sportsbook</option>
+          <option value="How to Register?">How to Register?</option>
+          <option value="How to Deposit Online">How to Deposit Online</option>
+          <option value="How to Deposit Via PayBILL">How to Deposit Via PayBILL</option>
+          <option value="How much can I win?">How much can I win?</option>
+          <option value="What is the maximum Stake?">What is the maximum Stake?</option>
+          <option value="What is the minimum Stake?"">What is the minimum Stake?"</option>
+          <option value="How to withdraw?">How to withdraw?</option>
+          <option value="What is cash out?">What is cash out?</option>
+          <option value="What is partial cash out?">What is partial cash out?</option>
+          <option value="How to place a multibet via SMS">How to place a multibet via SMS</option>
+          <option value="How to place a multibet Online">How to place a multibet Online</option>
+          <option value="How to place a Jackpot bet via SMS">How to place a Jackpot bet via SMS</option>
+          <option value="How to place a Jackpot bet online">How to place a Jackpot bet online</option>
+          <option value="How to place a Jackpot Combination bet">How to place a Jackpot Combination bet</option>
+          <option value="Cancelled/Postponed Matches">Cancelled/Postponed Matches</option>
+          <option value="Blank Call">Blank Call</option>
+          <option value="Customer Bulk Message Feedback">Customer Bulk Message Feedback</option>
+          <option value="Call Dropped">Call Dropped</option>
+          <option value="Can I get my money back if I don’t win?">Can I get my money back if I don’t win?</option>
+          <option value="Can I play online?">Can I play online?</option>
+          <option value="Can you send my Prize to another number">Can you send my Prize to another number</option>
+          <option value="Customer Compliments/ appreciates shabiki">Customer Compliments/ appreciates shabiki</option>
+          <option value="Delayed Cash Prize Payment">Delayed Cash Prize Payment</option>
+          <option value="Employment Request">Employment Request</option>
+          <option value="Seeking partnership with Shabiki">Seeking partnership with Shabiki</option>
+          <option value="Seeking Sponsorship">Seeking Sponsorship</option>
+          <option value="Seeking Loans">Seeking Loans</option>
+          <option value="Failed Message Delivery to short code 29063">Failed Message Delivery to short code 29063</option>
+          <option value="How do I bet with the money in Shabiki Account">How do I bet with the money in Shabiki Account</option>
+          <option value="How do I cancel/STOP my subscription? Will my account still be active?">How do I cancel/STOP my subscription? Will my account still be active?</option>
+          <option value="How do I check my balance?">How do I check my balance?</option>
+          <option value="How long is the ticket valid?">How long is the ticket valid?</option>
+          <option value="How much is the prize money for shabiki Jackpot?">How much is the prize money for shabiki Jackpot?</option>
+          <option value="How will I know that I have won the Jackpot">How will I know that I have won the Jackpot</option>
+          <option value="How will I be notified if I win?">How will I be notified if I win?</option>
+          <option value="How will I receive my money when I win?">How will I receive my money when I win?</option>
+          <option value="Inquiries on Excise Duty Tax">Inquiries on Excise Duty Tax</option>
+          <option value="Inquiries on With- Holding Tax">Inquiries on With- Holding Tax</option>
+          <option value="Mpesa Transaction Not Successful">Mpesa Transaction Not Successful</option>
+          <option value="Online Password Reset">Online Password Reset</option>
+          <option value="Shabiki Customer care Numbers">Shabiki Customer care Numbers</option>
+          <option value="Outbound customer follow up">Outbound customer follow up</option>
+          <option value="Customer Returning a missed call ">Customer Returning a missed call </option>
+          <option value="Re-subscription">Re-subscription</option>
+          <option value="Undelivered Betslip">Undelivered Betslip</option>
+          <option value="Which networks support these services?">Which networks support these services?</option>
+          <option value="Will the Jackpot Amount increase?">Will the Jackpot Amount increase?</option>
+          <option value="Inquiries on With Holding Tax - WHT">Inquiries on With Holding Tax - WHT</option>
+          <option value="What is a Game ID">What is a Game ID</option>
+          <option value="What is Live Betting?">What is Live Betting?</option>
+          <option value="Account Deactivation">Account Deactivation</option>
+          <option value="Bet History Sportsbook">Bet History Sportsbook</option>
+          <option value="Account Reactivation">Account Reactivation</option>
+          <option value="Bonus Inquiry (Welcome Bonus)">Bonus Inquiry (Welcome Bonus)</option>
+          <option value="Bonus Inquiry (Double Sunday Bonus)">Bonus Inquiry (Double Sunday Bonus)</option>
+          <option value="Cost of playing via SMS">Cost of playing via SMS</option>
+          <option value="Criteria for winner selection">Criteria for winner selection</option>
+          <option value="Delayed Bet via Mpesa">Delayed Bet via Mpesa</option>
+          <option value="Erroneous Mpesa Deposit-Reversal Request">Erroneous Mpesa Deposit-Reversal Request</option>
+          <option value="Failed registration">Failed registration</option>
+          <option value="How much is the prize money for shabiki Jackpot?">How much is the prize money for shabiki Jackpot?</option>
+          <option value="How to bet - Multibet">How to bet - Multibet</option>
+          <option value="How to bet - SingleBet">How to bet - SingleBet</option>
+          <option value="How to bet via MPesa">How to bet via MPesa</option>
+          <option value="How to get game ID">How to get game ID</option>
+          <option value="How to get Games">How to get Games</option>
+          <option value="How to play online">How to play online</option>
+          <option value="How to redeem free bet">How to redeem free bet</option>
+          <option value="How to view Game Results">How to view Game Results</option>
+          <option value="How will I be notified if I win?">How will I be notified if I win?</option>
+          <option value="Mpesa paybill queries">Mpesa paybill queries</option>
+          <option value="Office Location Request">Office Location Request</option>
+          <option value="Promotional Messages Feedback">Promotional Messages Feedback</option>
+          <option value="Registration Cost">Registration Cost</option>
+          <option value="Resend Deleted Betlips">Resend Deleted Betlips</option>
+          <option value="Seeking Loans">Seeking Loans</option>
+          <option value="Seeking partnership with Shabiki">Seeking partnership with Shabiki</option>
+          <option value="Types of bets">Types of bets</option>
+          <option value="Unsuccessful Bet">Unsuccessful Bet</option>
+          <option value="Website is unavailable - www.shabiki.com">Website is unavailable - www.shabiki.com</option>
+          <option value="When is resulting done">When is resulting done</option>
+          <option value="Which Mobile Networks support these services?">Which Mobile Networks support these services?</option>
+          <option value="Bonus Inquiry/Followup">Bonus Inquiry/Followup</option>
+          <option value="Bonus Inquiry (Welcome Bonus)">Bonus Inquiry (Welcome Bonus)</option>
+          <option value="Delayed Withdrawal">Delayed Withdrawal</option>
+          <option value="Delayed Deposit">Delayed Deposit</option>
+          <option value="Daily Maximum Payout">Daily Maximum Payout</option>
+          <option value="Supa Saturday - Cash back">Supa Saturday - Cash back</option>
+          <option value="Shabiki App Download">Shabiki App Download</option>
+          <option value="How to get games">How to get games</option>
+          <option value="How to view bet history">How to view bet history</option>
+          <option value="Wrong Number">Wrong Number</option>
+          <option value="Betting Shops inquiry">Betting Shops inquiry</option>
+          <option value="How do I bet with the money in Shabiki Account">How do I bet with the money in Shabiki Account</option>
+          <option value="How will I know that I have won the Jackpot">How will I know that I have won the Jackpot</option>
+          <option value="How will I be notified if I win?">How will I be notified if I win?</option>
+          <option value="Shabiki Customer Numbers">Shabiki Customer Numbers</option>
+          <option value="How to view Bet history">How to view Bet history</option>
+          <option value="How to Redeem Freebet">How to Redeem Freebet</option>
+          <option value="Freebet Validity">Freebet Validity</option>
+          <option value="Freebet Usage">Freebet Usage</option>
+          <option value="Happy Hour">Happy Hour</option>
+          <option value="Ongoing Promotions">Ongoing Promotions</option>
+          <option value="Account de-activation">Account de-activation</option>
+          <option value="System test-Sipline">System test-Sipline</option>
+          <option value="How to cancel bets">How to cancel bets</option>
+          <option value="Pick 6 Inquiries">Pick 6 Inquiries</option>
+          <option value="Bet History">Bet History</option>
+          <option value="How to view Jackpot - Bet history">How to view Jackpot - Bet history</option>
+          <option value="How to view Jackpot - Results">How to view Jackpot - Results</option>
+          <option value="Criteria for Jackpot winners selection">Criteria for Jackpot winners selection</option>
+          <option value="How much is the Jackpot bonus">How much is the Jackpot bonus</option>
+          <option value="Can one place the jackpot using Double Chance">Can one place the jackpot using Double Chance</option>
+          <option value="Is there Mid-Week Jackpot">Is there Mid-Week Jackpot</option>
+          <option value="What is SJP?">What is SJP?</option>
+          <option value="SJP- How to Play">SJP- How to Play</option>
+          <option value="SJP- Cost of Playing">SJP- Cost of Playing</option>
+          <option value="SJP- When is Draw Done?">SJP- When is Draw Done?</option>
+          <option value="SJP- Prize Money">SJP- Prize Money</option>
+          <option value="SJP- Criteria for winner selection">SJP- Criteria for winner selection</option>
+          <option value="SJP- How will I know I have won?">SJP- How will I know I have won?</option>
+          <option value="SJP- Bonus">SJP- Bonus</option>
+          <option value="SJP-Bet History">SJP-Bet History</option>
+          <option value="SJP-How to place a bet via SMS">SJP-How to place a bet via SMS</option>
+          <option value="SJP- How will I receive my winnings?">SJP- How will I receive my winnings?</option>
+          <option value="SJP-Bet limit">SJP-Bet limit</option>
+          <option value="MJP-Bonus">MJP-Bonus</option>
+          <option value="MJP- Criteria for winner selection">MJP- Criteria for winner selection</option>
+          <option value="MJP- Cost of Playing">MJP- Cost of Playing</option>
+          <option value="What is MJP?">What is MJP?</option>
+          <option value="MJP - Prize Money">MJP - Prize Money</option>
+          <option value="MJP- How to Play">MJP- How to Play</option>
+          <option value="MJP-Bet History">MJP-Bet History</option>
+          <option value="MJP-Bet limit">MJP-Bet limit</option>
+          <option value="MJP-How to place a bet via SMS">MJP-How to place a bet via SMS</option>
+          <option value="MJP- How will I receive my winnings?">MJP- How will I receive my winnings?</option>
+          <option value="MJP- Prize Money">MJP- Prize Money</option>
+          <option value="MJP- When is Draw Done?">MJP- When is Draw Done?</option>
+          <option value="How to deposit in E-Wallet (Pay Bill)">How to deposit in E-Wallet (Pay Bill)</option>
+          <option value="How to deposit in E-Wallet (SMS)">How to deposit in E-Wallet (SMS)</option>
+          <option value="How to deposit in E-Wallet (Online)">How to deposit in E-Wallet (Online)</option>
+          <option value="Angukia Ki Shabiki Lottery-How to play.">Angukia Ki Shabiki Lottery-How to play.</option>
+          <option value="Angukia Ki Shabiki Lottery-Cost of playing.">Angukia Ki Shabiki Lottery-Cost of playing.</option>
+          <option value="Angukia Ki Shabiki Lottery-Prize Money">Angukia Ki Shabiki Lottery-Prize Money</option>
+          <option value="What is Angukia Ki Shabiki Lottery?">What is Angukia Ki Shabiki Lottery?</option>
+          <option value="Angukia Kishabiki Lottery Criteria for winner selection">Angukia Kishabiki Lottery Criteria for winner selection</option>
+          <option value="Angukia Ki Shabiki Lottery- When is the draw done">Angukia Ki Shabiki Lottery- When is the draw done</option>
+          <option value="Angukia Ki Shabiki Lottery-Bonus">Angukia Ki Shabiki Lottery-Bonus</option>
+          <option value="Angukia Ki Shabiki Lottery- Limit">Angukia Ki Shabiki Lottery- Limit</option>
+          <option value="Aviator- Cost of Playing">Aviator- Cost of Playing</option>
+          <option value="What is Aviator?">What is Aviator?</option>
+          <option value="Aviator - Prize Money">Aviator - Prize Money</option>
+          <option value="Aviator- How to Play">Aviator- How to Play</option>
+          <option value="Aviator - Delayed Cash prize settlement">Aviator - Delayed Cash prize settlement</option>
+          <option value="Aviator-Bet History">Aviator-Bet History</option>
+          <option value="Aviator-Bet limit">Aviator-Bet limit</option>
+          <option value="Jiomoshe na Jet X-How to play?">Jiomoshe na Jet X-How to play?</option>
+          <option value="Jiomoshe na Jet X-Cost of playing">Jiomoshe na Jet X-Cost of playing</option>
+          <option value="Jiomoshe na Jet X-Bet Limit">Jiomoshe na Jet X-Bet Limit</option>
+          <option value="Jiomoshe na Jet X-Bet History">Jiomoshe na Jet X-Bet History</option>
+          <option value="Jiomoshe na Jet X-Criteria for winner selection">Jiomoshe na Jet X-Criteria for winner selection</option>
+          <option value="Jiomoshe na Jet X-How will I receive my winnings?">Jiomoshe na Jet X-How will I receive my winnings?</option>
+          <option value="Jiomoshe na Jet X-Scoring Method">Jiomoshe na Jet X-Scoring Method</option>
+          <option value="Jiomoshe na Jet X-Bonus">Jiomoshe na Jet X-Bonus</option>
+          <option value="Kafunge Kichampe -How to play?">Kafunge Kichampe -How to play?</option>
+          <option value="Kafunge Kichampe -Cost of playing">Kafunge Kichampe -Cost of playing</option>
+          <option value="Kafunge Kichampe -Bet Limit">Kafunge Kichampe -Bet Limit</option>
+          <option value="Kafunge Kichampe -Bet History">Kafunge Kichampe -Bet History</option>
+          <option value="Kafunge Kichampe -Criteria for winner selection">Kafunge Kichampe -Criteria for winner selection</option>
+          <option value="Kafunge Kichampe -How will I receive my winnings?">Kafunge Kichampe -How will I receive my winnings?</option>
+          <option value="Kafunge Kichampe-Scoring Method">Kafunge Kichampe-Scoring Method</option>
+          <option value="Kafunge Kichampe-Bonus">Kafunge Kichampe-Bonus</option>
+          <option value="What is a free bet">What is a free bet</option>
+          <option value="How to get a free bet">How to get a free bet</option>
+          <option value="How to redeem free bet">How to redeem free bet</option>
+          <option value="Failed Redeeming free bet">Failed Redeeming free bet</option>
+          <option value="Check free bets Balance">Check free bets Balance</option>
+          <option value="Check free bets Balance">Check free bets Balance</option><option value="Check free bets Balance">Check free bets Balance</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="disposition3">Disposition 3</label>
+        <select name="disposition3" id="disposition3" class="form-select">
+          <option value="">Select Disposition 3</option>
+                    <option value="">Select Disposition 1</option>
+          <option value="How to place a bet on Sportsbook">How to place a bet on Sportsbook</option>
+          <option value="How to Register?">How to Register?</option>
+          <option value="How to Deposit Online">How to Deposit Online</option>
+          <option value="How to Deposit Via PayBILL">How to Deposit Via PayBILL</option>
+          <option value="How much can I win?">How much can I win?</option>
+          <option value="What is the maximum Stake?">What is the maximum Stake?</option>
+          <option value="What is the minimum Stake?"">What is the minimum Stake?"</option>
+          <option value="How to withdraw?">How to withdraw?</option>
+          <option value="What is cash out?">What is cash out?</option>
+          <option value="What is partial cash out?">What is partial cash out?</option>
+          <option value="How to place a multibet via SMS">How to place a multibet via SMS</option>
+          <option value="How to place a multibet Online">How to place a multibet Online</option>
+          <option value="How to place a Jackpot bet via SMS">How to place a Jackpot bet via SMS</option>
+          <option value="How to place a Jackpot bet online">How to place a Jackpot bet online</option>
+          <option value="How to place a Jackpot Combination bet">How to place a Jackpot Combination bet</option>
+          <option value="Cancelled/Postponed Matches">Cancelled/Postponed Matches</option>
+          <option value="Blank Call">Blank Call</option>
+          <option value="Customer Bulk Message Feedback">Customer Bulk Message Feedback</option>
+          <option value="Call Dropped">Call Dropped</option>
+          <option value="Can I get my money back if I don’t win?">Can I get my money back if I don’t win?</option>
+          <option value="Can I play online?">Can I play online?</option>
+          <option value="Can you send my Prize to another number">Can you send my Prize to another number</option>
+          <option value="Customer Compliments/ appreciates shabiki">Customer Compliments/ appreciates shabiki</option>
+          <option value="Delayed Cash Prize Payment">Delayed Cash Prize Payment</option>
+          <option value="Employment Request">Employment Request</option>
+          <option value="Seeking partnership with Shabiki">Seeking partnership with Shabiki</option>
+          <option value="Seeking Sponsorship">Seeking Sponsorship</option>
+          <option value="Seeking Loans">Seeking Loans</option>
+          <option value="Failed Message Delivery to short code 29063">Failed Message Delivery to short code 29063</option>
+          <option value="How do I bet with the money in Shabiki Account">How do I bet with the money in Shabiki Account</option>
+          <option value="How do I cancel/STOP my subscription? Will my account still be active?">How do I cancel/STOP my subscription? Will my account still be active?</option>
+          <option value="How do I check my balance?">How do I check my balance?</option>
+          <option value="How long is the ticket valid?">How long is the ticket valid?</option>
+          <option value="How much is the prize money for shabiki Jackpot?">How much is the prize money for shabiki Jackpot?</option>
+          <option value="How will I know that I have won the Jackpot">How will I know that I have won the Jackpot</option>
+          <option value="How will I be notified if I win?">How will I be notified if I win?</option>
+          <option value="How will I receive my money when I win?">How will I receive my money when I win?</option>
+          <option value="Inquiries on Excise Duty Tax">Inquiries on Excise Duty Tax</option>
+          <option value="Inquiries on With- Holding Tax">Inquiries on With- Holding Tax</option>
+          <option value="Mpesa Transaction Not Successful">Mpesa Transaction Not Successful</option>
+          <option value="Online Password Reset">Online Password Reset</option>
+          <option value="Shabiki Customer care Numbers">Shabiki Customer care Numbers</option>
+          <option value="Outbound customer follow up">Outbound customer follow up</option>
+          <option value="Customer Returning a missed call ">Customer Returning a missed call </option>
+          <option value="Re-subscription">Re-subscription</option>
+          <option value="Undelivered Betslip">Undelivered Betslip</option>
+          <option value="Which networks support these services?">Which networks support these services?</option>
+          <option value="Will the Jackpot Amount increase?">Will the Jackpot Amount increase?</option>
+          <option value="Inquiries on With Holding Tax - WHT">Inquiries on With Holding Tax - WHT</option>
+          <option value="What is a Game ID">What is a Game ID</option>
+          <option value="What is Live Betting?">What is Live Betting?</option>
+          <option value="Account Deactivation">Account Deactivation</option>
+          <option value="Bet History Sportsbook">Bet History Sportsbook</option>
+          <option value="Account Reactivation">Account Reactivation</option>
+          <option value="Bonus Inquiry (Welcome Bonus)">Bonus Inquiry (Welcome Bonus)</option>
+          <option value="Bonus Inquiry (Double Sunday Bonus)">Bonus Inquiry (Double Sunday Bonus)</option>
+          <option value="Cost of playing via SMS">Cost of playing via SMS</option>
+          <option value="Criteria for winner selection">Criteria for winner selection</option>
+          <option value="Delayed Bet via Mpesa">Delayed Bet via Mpesa</option>
+          <option value="Erroneous Mpesa Deposit-Reversal Request">Erroneous Mpesa Deposit-Reversal Request</option>
+          <option value="Failed registration">Failed registration</option>
+          <option value="How much is the prize money for shabiki Jackpot?">How much is the prize money for shabiki Jackpot?</option>
+          <option value="How to bet - Multibet">How to bet - Multibet</option>
+          <option value="How to bet - SingleBet">How to bet - SingleBet</option>
+          <option value="How to bet via MPesa">How to bet via MPesa</option>
+          <option value="How to get game ID">How to get game ID</option>
+          <option value="How to get Games">How to get Games</option>
+          <option value="How to play online">How to play online</option>
+          <option value="How to redeem free bet">How to redeem free bet</option>
+          <option value="How to view Game Results">How to view Game Results</option>
+          <option value="How will I be notified if I win?">How will I be notified if I win?</option>
+          <option value="Mpesa paybill queries">Mpesa paybill queries</option>
+          <option value="Office Location Request">Office Location Request</option>
+          <option value="Promotional Messages Feedback">Promotional Messages Feedback</option>
+          <option value="Registration Cost">Registration Cost</option>
+          <option value="Resend Deleted Betlips">Resend Deleted Betlips</option>
+          <option value="Seeking Loans">Seeking Loans</option>
+          <option value="Seeking partnership with Shabiki">Seeking partnership with Shabiki</option>
+          <option value="Types of bets">Types of bets</option>
+          <option value="Unsuccessful Bet">Unsuccessful Bet</option>
+          <option value="Website is unavailable - www.shabiki.com">Website is unavailable - www.shabiki.com</option>
+          <option value="When is resulting done">When is resulting done</option>
+          <option value="Which Mobile Networks support these services?">Which Mobile Networks support these services?</option>
+          <option value="Bonus Inquiry/Followup">Bonus Inquiry/Followup</option>
+          <option value="Bonus Inquiry (Welcome Bonus)">Bonus Inquiry (Welcome Bonus)</option>
+          <option value="Delayed Withdrawal">Delayed Withdrawal</option>
+          <option value="Delayed Deposit">Delayed Deposit</option>
+          <option value="Daily Maximum Payout">Daily Maximum Payout</option>
+          <option value="Supa Saturday - Cash back">Supa Saturday - Cash back</option>
+          <option value="Shabiki App Download">Shabiki App Download</option>
+          <option value="How to get games">How to get games</option>
+          <option value="How to view bet history">How to view bet history</option>
+          <option value="Wrong Number">Wrong Number</option>
+          <option value="Betting Shops inquiry">Betting Shops inquiry</option>
+          <option value="How do I bet with the money in Shabiki Account">How do I bet with the money in Shabiki Account</option>
+          <option value="How will I know that I have won the Jackpot">How will I know that I have won the Jackpot</option>
+          <option value="How will I be notified if I win?">How will I be notified if I win?</option>
+          <option value="Shabiki Customer Numbers">Shabiki Customer Numbers</option>
+          <option value="How to view Bet history">How to view Bet history</option>
+          <option value="How to Redeem Freebet">How to Redeem Freebet</option>
+          <option value="Freebet Validity">Freebet Validity</option>
+          <option value="Freebet Usage">Freebet Usage</option>
+          <option value="Happy Hour">Happy Hour</option>
+          <option value="Ongoing Promotions">Ongoing Promotions</option>
+          <option value="Account de-activation">Account de-activation</option>
+          <option value="System test-Sipline">System test-Sipline</option>
+          <option value="How to cancel bets">How to cancel bets</option>
+          <option value="Pick 6 Inquiries">Pick 6 Inquiries</option>
+          <option value="Bet History">Bet History</option>
+          <option value="How to view Jackpot - Bet history">How to view Jackpot - Bet history</option>
+          <option value="How to view Jackpot - Results">How to view Jackpot - Results</option>
+          <option value="Criteria for Jackpot winners selection">Criteria for Jackpot winners selection</option>
+          <option value="How much is the Jackpot bonus">How much is the Jackpot bonus</option>
+          <option value="Can one place the jackpot using Double Chance">Can one place the jackpot using Double Chance</option>
+          <option value="Is there Mid-Week Jackpot">Is there Mid-Week Jackpot</option>
+          <option value="What is SJP?">What is SJP?</option>
+          <option value="SJP- How to Play">SJP- How to Play</option>
+          <option value="SJP- Cost of Playing">SJP- Cost of Playing</option>
+          <option value="SJP- When is Draw Done?">SJP- When is Draw Done?</option>
+          <option value="SJP- Prize Money">SJP- Prize Money</option>
+          <option value="SJP- Criteria for winner selection">SJP- Criteria for winner selection</option>
+          <option value="SJP- How will I know I have won?">SJP- How will I know I have won?</option>
+          <option value="SJP- Bonus">SJP- Bonus</option>
+          <option value="SJP-Bet History">SJP-Bet History</option>
+          <option value="SJP-How to place a bet via SMS">SJP-How to place a bet via SMS</option>
+          <option value="SJP- How will I receive my winnings?">SJP- How will I receive my winnings?</option>
+          <option value="SJP-Bet limit">SJP-Bet limit</option>
+          <option value="MJP-Bonus">MJP-Bonus</option>
+          <option value="MJP- Criteria for winner selection">MJP- Criteria for winner selection</option>
+          <option value="MJP- Cost of Playing">MJP- Cost of Playing</option>
+          <option value="What is MJP?">What is MJP?</option>
+          <option value="MJP - Prize Money">MJP - Prize Money</option>
+          <option value="MJP- How to Play">MJP- How to Play</option>
+          <option value="MJP-Bet History">MJP-Bet History</option>
+          <option value="MJP-Bet limit">MJP-Bet limit</option>
+          <option value="MJP-How to place a bet via SMS">MJP-How to place a bet via SMS</option>
+          <option value="MJP- How will I receive my winnings?">MJP- How will I receive my winnings?</option>
+          <option value="MJP- Prize Money">MJP- Prize Money</option>
+          <option value="MJP- When is Draw Done?">MJP- When is Draw Done?</option>
+          <option value="How to deposit in E-Wallet (Pay Bill)">How to deposit in E-Wallet (Pay Bill)</option>
+          <option value="How to deposit in E-Wallet (SMS)">How to deposit in E-Wallet (SMS)</option>
+          <option value="How to deposit in E-Wallet (Online)">How to deposit in E-Wallet (Online)</option>
+          <option value="Angukia Ki Shabiki Lottery-How to play.">Angukia Ki Shabiki Lottery-How to play.</option>
+          <option value="Angukia Ki Shabiki Lottery-Cost of playing.">Angukia Ki Shabiki Lottery-Cost of playing.</option>
+          <option value="Angukia Ki Shabiki Lottery-Prize Money">Angukia Ki Shabiki Lottery-Prize Money</option>
+          <option value="What is Angukia Ki Shabiki Lottery?">What is Angukia Ki Shabiki Lottery?</option>
+          <option value="Angukia Kishabiki Lottery Criteria for winner selection">Angukia Kishabiki Lottery Criteria for winner selection</option>
+          <option value="Angukia Ki Shabiki Lottery- When is the draw done">Angukia Ki Shabiki Lottery- When is the draw done</option>
+          <option value="Angukia Ki Shabiki Lottery-Bonus">Angukia Ki Shabiki Lottery-Bonus</option>
+          <option value="Angukia Ki Shabiki Lottery- Limit">Angukia Ki Shabiki Lottery- Limit</option>
+          <option value="Aviator- Cost of Playing">Aviator- Cost of Playing</option>
+          <option value="What is Aviator?">What is Aviator?</option>
+          <option value="Aviator - Prize Money">Aviator - Prize Money</option>
+          <option value="Aviator- How to Play">Aviator- How to Play</option>
+          <option value="Aviator - Delayed Cash prize settlement">Aviator - Delayed Cash prize settlement</option>
+          <option value="Aviator-Bet History">Aviator-Bet History</option>
+          <option value="Aviator-Bet limit">Aviator-Bet limit</option>
+          <option value="Jiomoshe na Jet X-How to play?">Jiomoshe na Jet X-How to play?</option>
+          <option value="Jiomoshe na Jet X-Cost of playing">Jiomoshe na Jet X-Cost of playing</option>
+          <option value="Jiomoshe na Jet X-Bet Limit">Jiomoshe na Jet X-Bet Limit</option>
+          <option value="Jiomoshe na Jet X-Bet History">Jiomoshe na Jet X-Bet History</option>
+          <option value="Jiomoshe na Jet X-Criteria for winner selection">Jiomoshe na Jet X-Criteria for winner selection</option>
+          <option value="Jiomoshe na Jet X-How will I receive my winnings?">Jiomoshe na Jet X-How will I receive my winnings?</option>
+          <option value="Jiomoshe na Jet X-Scoring Method">Jiomoshe na Jet X-Scoring Method</option>
+          <option value="Jiomoshe na Jet X-Bonus">Jiomoshe na Jet X-Bonus</option>
+          <option value="Kafunge Kichampe -How to play?">Kafunge Kichampe -How to play?</option>
+          <option value="Kafunge Kichampe -Cost of playing">Kafunge Kichampe -Cost of playing</option>
+          <option value="Kafunge Kichampe -Bet Limit">Kafunge Kichampe -Bet Limit</option>
+          <option value="Kafunge Kichampe -Bet History">Kafunge Kichampe -Bet History</option>
+          <option value="Kafunge Kichampe -Criteria for winner selection">Kafunge Kichampe -Criteria for winner selection</option>
+          <option value="Kafunge Kichampe -How will I receive my winnings?">Kafunge Kichampe -How will I receive my winnings?</option>
+          <option value="Kafunge Kichampe-Scoring Method">Kafunge Kichampe-Scoring Method</option>
+          <option value="Kafunge Kichampe-Bonus">Kafunge Kichampe-Bonus</option>
+          <option value="What is a free bet">What is a free bet</option>
+          <option value="How to get a free bet">How to get a free bet</option>
+          <option value="How to redeem free bet">How to redeem free bet</option>
+          <option value="Failed Redeeming free bet">Failed Redeeming free bet</option>
+          <option value="Check free bets Balance">Check free bets Balance</option>
+          <option value="Check free bets Balance">Check free bets Balance</option><option value="Check free bets Balance">Check free bets Balance</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="disposition4">Disposition 4</label>
+        <select name="disposition4" id="disposition4" class="form-select">
+          <option value="">Select Disposition 4</option>
+                    <option value="">Select Disposition 1</option>
+          <option value="How to place a bet on Sportsbook">How to place a bet on Sportsbook</option>
+          <option value="How to Register?">How to Register?</option>
+          <option value="How to Deposit Online">How to Deposit Online</option>
+          <option value="How to Deposit Via PayBILL">How to Deposit Via PayBILL</option>
+          <option value="How much can I win?">How much can I win?</option>
+          <option value="What is the maximum Stake?">What is the maximum Stake?</option>
+          <option value="What is the minimum Stake?"">What is the minimum Stake?"</option>
+          <option value="How to withdraw?">How to withdraw?</option>
+          <option value="What is cash out?">What is cash out?</option>
+          <option value="What is partial cash out?">What is partial cash out?</option>
+          <option value="How to place a multibet via SMS">How to place a multibet via SMS</option>
+          <option value="How to place a multibet Online">How to place a multibet Online</option>
+          <option value="How to place a Jackpot bet via SMS">How to place a Jackpot bet via SMS</option>
+          <option value="How to place a Jackpot bet online">How to place a Jackpot bet online</option>
+          <option value="How to place a Jackpot Combination bet">How to place a Jackpot Combination bet</option>
+          <option value="Cancelled/Postponed Matches">Cancelled/Postponed Matches</option>
+          <option value="Blank Call">Blank Call</option>
+          <option value="Customer Bulk Message Feedback">Customer Bulk Message Feedback</option>
+          <option value="Call Dropped">Call Dropped</option>
+          <option value="Can I get my money back if I don’t win?">Can I get my money back if I don’t win?</option>
+          <option value="Can I play online?">Can I play online?</option>
+          <option value="Can you send my Prize to another number">Can you send my Prize to another number</option>
+          <option value="Customer Compliments/ appreciates shabiki">Customer Compliments/ appreciates shabiki</option>
+          <option value="Delayed Cash Prize Payment">Delayed Cash Prize Payment</option>
+          <option value="Employment Request">Employment Request</option>
+          <option value="Seeking partnership with Shabiki">Seeking partnership with Shabiki</option>
+          <option value="Seeking Sponsorship">Seeking Sponsorship</option>
+          <option value="Seeking Loans">Seeking Loans</option>
+          <option value="Failed Message Delivery to short code 29063">Failed Message Delivery to short code 29063</option>
+          <option value="How do I bet with the money in Shabiki Account">How do I bet with the money in Shabiki Account</option>
+          <option value="How do I cancel/STOP my subscription? Will my account still be active?">How do I cancel/STOP my subscription? Will my account still be active?</option>
+          <option value="How do I check my balance?">How do I check my balance?</option>
+          <option value="How long is the ticket valid?">How long is the ticket valid?</option>
+          <option value="How much is the prize money for shabiki Jackpot?">How much is the prize money for shabiki Jackpot?</option>
+          <option value="How will I know that I have won the Jackpot">How will I know that I have won the Jackpot</option>
+          <option value="How will I be notified if I win?">How will I be notified if I win?</option>
+          <option value="How will I receive my money when I win?">How will I receive my money when I win?</option>
+          <option value="Inquiries on Excise Duty Tax">Inquiries on Excise Duty Tax</option>
+          <option value="Inquiries on With- Holding Tax">Inquiries on With- Holding Tax</option>
+          <option value="Mpesa Transaction Not Successful">Mpesa Transaction Not Successful</option>
+          <option value="Online Password Reset">Online Password Reset</option>
+          <option value="Shabiki Customer care Numbers">Shabiki Customer care Numbers</option>
+          <option value="Outbound customer follow up">Outbound customer follow up</option>
+          <option value="Customer Returning a missed call ">Customer Returning a missed call </option>
+          <option value="Re-subscription">Re-subscription</option>
+          <option value="Undelivered Betslip">Undelivered Betslip</option>
+          <option value="Which networks support these services?">Which networks support these services?</option>
+          <option value="Will the Jackpot Amount increase?">Will the Jackpot Amount increase?</option>
+          <option value="Inquiries on With Holding Tax - WHT">Inquiries on With Holding Tax - WHT</option>
+          <option value="What is a Game ID">What is a Game ID</option>
+          <option value="What is Live Betting?">What is Live Betting?</option>
+          <option value="Account Deactivation">Account Deactivation</option>
+          <option value="Bet History Sportsbook">Bet History Sportsbook</option>
+          <option value="Account Reactivation">Account Reactivation</option>
+          <option value="Bonus Inquiry (Welcome Bonus)">Bonus Inquiry (Welcome Bonus)</option>
+          <option value="Bonus Inquiry (Double Sunday Bonus)">Bonus Inquiry (Double Sunday Bonus)</option>
+          <option value="Cost of playing via SMS">Cost of playing via SMS</option>
+          <option value="Criteria for winner selection">Criteria for winner selection</option>
+          <option value="Delayed Bet via Mpesa">Delayed Bet via Mpesa</option>
+          <option value="Erroneous Mpesa Deposit-Reversal Request">Erroneous Mpesa Deposit-Reversal Request</option>
+          <option value="Failed registration">Failed registration</option>
+          <option value="How much is the prize money for shabiki Jackpot?">How much is the prize money for shabiki Jackpot?</option>
+          <option value="How to bet - Multibet">How to bet - Multibet</option>
+          <option value="How to bet - SingleBet">How to bet - SingleBet</option>
+          <option value="How to bet via MPesa">How to bet via MPesa</option>
+          <option value="How to get game ID">How to get game ID</option>
+          <option value="How to get Games">How to get Games</option>
+          <option value="How to play online">How to play online</option>
+          <option value="How to redeem free bet">How to redeem free bet</option>
+          <option value="How to view Game Results">How to view Game Results</option>
+          <option value="How will I be notified if I win?">How will I be notified if I win?</option>
+          <option value="Mpesa paybill queries">Mpesa paybill queries</option>
+          <option value="Office Location Request">Office Location Request</option>
+          <option value="Promotional Messages Feedback">Promotional Messages Feedback</option>
+          <option value="Registration Cost">Registration Cost</option>
+          <option value="Resend Deleted Betlips">Resend Deleted Betlips</option>
+          <option value="Seeking Loans">Seeking Loans</option>
+          <option value="Seeking partnership with Shabiki">Seeking partnership with Shabiki</option>
+          <option value="Types of bets">Types of bets</option>
+          <option value="Unsuccessful Bet">Unsuccessful Bet</option>
+          <option value="Website is unavailable - www.shabiki.com">Website is unavailable - www.shabiki.com</option>
+          <option value="When is resulting done">When is resulting done</option>
+          <option value="Which Mobile Networks support these services?">Which Mobile Networks support these services?</option>
+          <option value="Bonus Inquiry/Followup">Bonus Inquiry/Followup</option>
+          <option value="Bonus Inquiry (Welcome Bonus)">Bonus Inquiry (Welcome Bonus)</option>
+          <option value="Delayed Withdrawal">Delayed Withdrawal</option>
+          <option value="Delayed Deposit">Delayed Deposit</option>
+          <option value="Daily Maximum Payout">Daily Maximum Payout</option>
+          <option value="Supa Saturday - Cash back">Supa Saturday - Cash back</option>
+          <option value="Shabiki App Download">Shabiki App Download</option>
+          <option value="How to get games">How to get games</option>
+          <option value="How to view bet history">How to view bet history</option>
+          <option value="Wrong Number">Wrong Number</option>
+          <option value="Betting Shops inquiry">Betting Shops inquiry</option>
+          <option value="How do I bet with the money in Shabiki Account">How do I bet with the money in Shabiki Account</option>
+          <option value="How will I know that I have won the Jackpot">How will I know that I have won the Jackpot</option>
+          <option value="How will I be notified if I win?">How will I be notified if I win?</option>
+          <option value="Shabiki Customer Numbers">Shabiki Customer Numbers</option>
+          <option value="How to view Bet history">How to view Bet history</option>
+          <option value="How to Redeem Freebet">How to Redeem Freebet</option>
+          <option value="Freebet Validity">Freebet Validity</option>
+          <option value="Freebet Usage">Freebet Usage</option>
+          <option value="Happy Hour">Happy Hour</option>
+          <option value="Ongoing Promotions">Ongoing Promotions</option>
+          <option value="Account de-activation">Account de-activation</option>
+          <option value="System test-Sipline">System test-Sipline</option>
+          <option value="How to cancel bets">How to cancel bets</option>
+          <option value="Pick 6 Inquiries">Pick 6 Inquiries</option>
+          <option value="Bet History">Bet History</option>
+          <option value="How to view Jackpot - Bet history">How to view Jackpot - Bet history</option>
+          <option value="How to view Jackpot - Results">How to view Jackpot - Results</option>
+          <option value="Criteria for Jackpot winners selection">Criteria for Jackpot winners selection</option>
+          <option value="How much is the Jackpot bonus">How much is the Jackpot bonus</option>
+          <option value="Can one place the jackpot using Double Chance">Can one place the jackpot using Double Chance</option>
+          <option value="Is there Mid-Week Jackpot">Is there Mid-Week Jackpot</option>
+          <option value="What is SJP?">What is SJP?</option>
+          <option value="SJP- How to Play">SJP- How to Play</option>
+          <option value="SJP- Cost of Playing">SJP- Cost of Playing</option>
+          <option value="SJP- When is Draw Done?">SJP- When is Draw Done?</option>
+          <option value="SJP- Prize Money">SJP- Prize Money</option>
+          <option value="SJP- Criteria for winner selection">SJP- Criteria for winner selection</option>
+          <option value="SJP- How will I know I have won?">SJP- How will I know I have won?</option>
+          <option value="SJP- Bonus">SJP- Bonus</option>
+          <option value="SJP-Bet History">SJP-Bet History</option>
+          <option value="SJP-How to place a bet via SMS">SJP-How to place a bet via SMS</option>
+          <option value="SJP- How will I receive my winnings?">SJP- How will I receive my winnings?</option>
+          <option value="SJP-Bet limit">SJP-Bet limit</option>
+          <option value="MJP-Bonus">MJP-Bonus</option>
+          <option value="MJP- Criteria for winner selection">MJP- Criteria for winner selection</option>
+          <option value="MJP- Cost of Playing">MJP- Cost of Playing</option>
+          <option value="What is MJP?">What is MJP?</option>
+          <option value="MJP - Prize Money">MJP - Prize Money</option>
+          <option value="MJP- How to Play">MJP- How to Play</option>
+          <option value="MJP-Bet History">MJP-Bet History</option>
+          <option value="MJP-Bet limit">MJP-Bet limit</option>
+          <option value="MJP-How to place a bet via SMS">MJP-How to place a bet via SMS</option>
+          <option value="MJP- How will I receive my winnings?">MJP- How will I receive my winnings?</option>
+          <option value="MJP- Prize Money">MJP- Prize Money</option>
+          <option value="MJP- When is Draw Done?">MJP- When is Draw Done?</option>
+          <option value="How to deposit in E-Wallet (Pay Bill)">How to deposit in E-Wallet (Pay Bill)</option>
+          <option value="How to deposit in E-Wallet (SMS)">How to deposit in E-Wallet (SMS)</option>
+          <option value="How to deposit in E-Wallet (Online)">How to deposit in E-Wallet (Online)</option>
+          <option value="Angukia Ki Shabiki Lottery-How to play.">Angukia Ki Shabiki Lottery-How to play.</option>
+          <option value="Angukia Ki Shabiki Lottery-Cost of playing.">Angukia Ki Shabiki Lottery-Cost of playing.</option>
+          <option value="Angukia Ki Shabiki Lottery-Prize Money">Angukia Ki Shabiki Lottery-Prize Money</option>
+          <option value="What is Angukia Ki Shabiki Lottery?">What is Angukia Ki Shabiki Lottery?</option>
+          <option value="Angukia Kishabiki Lottery Criteria for winner selection">Angukia Kishabiki Lottery Criteria for winner selection</option>
+          <option value="Angukia Ki Shabiki Lottery- When is the draw done">Angukia Ki Shabiki Lottery- When is the draw done</option>
+          <option value="Angukia Ki Shabiki Lottery-Bonus">Angukia Ki Shabiki Lottery-Bonus</option>
+          <option value="Angukia Ki Shabiki Lottery- Limit">Angukia Ki Shabiki Lottery- Limit</option>
+          <option value="Aviator- Cost of Playing">Aviator- Cost of Playing</option>
+          <option value="What is Aviator?">What is Aviator?</option>
+          <option value="Aviator - Prize Money">Aviator - Prize Money</option>
+          <option value="Aviator- How to Play">Aviator- How to Play</option>
+          <option value="Aviator - Delayed Cash prize settlement">Aviator - Delayed Cash prize settlement</option>
+          <option value="Aviator-Bet History">Aviator-Bet History</option>
+          <option value="Aviator-Bet limit">Aviator-Bet limit</option>
+          <option value="Jiomoshe na Jet X-How to play?">Jiomoshe na Jet X-How to play?</option>
+          <option value="Jiomoshe na Jet X-Cost of playing">Jiomoshe na Jet X-Cost of playing</option>
+          <option value="Jiomoshe na Jet X-Bet Limit">Jiomoshe na Jet X-Bet Limit</option>
+          <option value="Jiomoshe na Jet X-Bet History">Jiomoshe na Jet X-Bet History</option>
+          <option value="Jiomoshe na Jet X-Criteria for winner selection">Jiomoshe na Jet X-Criteria for winner selection</option>
+          <option value="Jiomoshe na Jet X-How will I receive my winnings?">Jiomoshe na Jet X-How will I receive my winnings?</option>
+          <option value="Jiomoshe na Jet X-Scoring Method">Jiomoshe na Jet X-Scoring Method</option>
+          <option value="Jiomoshe na Jet X-Bonus">Jiomoshe na Jet X-Bonus</option>
+          <option value="Kafunge Kichampe -How to play?">Kafunge Kichampe -How to play?</option>
+          <option value="Kafunge Kichampe -Cost of playing">Kafunge Kichampe -Cost of playing</option>
+          <option value="Kafunge Kichampe -Bet Limit">Kafunge Kichampe -Bet Limit</option>
+          <option value="Kafunge Kichampe -Bet History">Kafunge Kichampe -Bet History</option>
+          <option value="Kafunge Kichampe -Criteria for winner selection">Kafunge Kichampe -Criteria for winner selection</option>
+          <option value="Kafunge Kichampe -How will I receive my winnings?">Kafunge Kichampe -How will I receive my winnings?</option>
+          <option value="Kafunge Kichampe-Scoring Method">Kafunge Kichampe-Scoring Method</option>
+          <option value="Kafunge Kichampe-Bonus">Kafunge Kichampe-Bonus</option>
+          <option value="What is a free bet">What is a free bet</option>
+          <option value="How to get a free bet">How to get a free bet</option>
+          <option value="How to redeem free bet">How to redeem free bet</option>
+          <option value="Failed Redeeming free bet">Failed Redeeming free bet</option>
+          <option value="Check free bets Balance">Check free bets Balance</option>
+          <option value="Check free bets Balance">Check free bets Balance</option><option value="Check free bets Balance">Check free bets Balance</option>
+        </select>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit Form</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.querySelector('form[name="submit-to-google-sheet"]');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const formData = new FormData(form);
+  const submitBtn = form.querySelector('.submit-btn');
+  const originalText = submitBtn.textContent;
+  
+  // Disable button and show loading state
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting...';
+  
+  // Prepare ticket data with your actual form fields
+  const ticketData = {
+    number: formData.get('number'),
+    gender: formData.get('gender'),
+    disposition1: formData.get('disposition1'),
+    disposition2: formData.get('disposition2') || 'N/A',
+    disposition3: formData.get('disposition3') || 'N/A',
+    disposition4: formData.get('disposition4') || 'N/A'
+  };
+  
+  try {
+    // Node.js server endpoint
+    const response = await fetch('/api/create-ticket', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(ticketData)
+    });
+    
+    const result = await response.json();
+    
+    if (response.ok) {
+      alert('✓ Ticket created successfully! Ticket ID: ' + result.ticketId);
+      form.reset();
+    } else {
+      alert('✗ Error: ' + (result.error || 'Unknown error'));
+    }
+  } catch (error) {
+    alert('✗ Error submitting form: ' + error.message);
+  } finally {
+    // Re-enable button
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
+  }
+});
+  </script>
+</body>
+</html>
