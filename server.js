@@ -6,14 +6,7 @@ require('dotenv').config();
 
 const app = express();
 
-// Enable CORS for your HTML page
-const cors = require('cors');
-const express = require('express');
-const axios = require('axios');
-require('dotenv').config();
-
-const app = express();
-
+// ✅ Enable CORS for your form domains
 app.use(cors({
   origin: [
     'http://127.0.0.1:5500',            // Local testing
@@ -27,18 +20,17 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-// Replace these IDs with your actual Zendesk custom field IDs
+// ✅ Zendesk custom field IDs
 const CUSTOM_FIELDS = {
-  number: 30811600163090,      // Customer Number
-  gender: 30811657814034,      // Gender
+  number: 30811600163090,
+  gender: 30811657814034,
   disposition1: 30811872818834,
   disposition2: 30811949680530,
   disposition3: 30812114770194,
   disposition4: 30812171988882
 };
 
-// Your Zendesk ticket form ID
+// ✅ Zendesk ticket form ID
 const FORM_ID = 23385393833372;
 
 app.post('/create-ticket', async (req, res) => {
@@ -66,7 +58,7 @@ app.post('/create-ticket', async (req, res) => {
       custom_fields: [
         { id: CUSTOM_FIELDS.number, value: number },
         { id: CUSTOM_FIELDS.gender, value: gender },
-        { id: CUSTOM_FIELDS.disposition1, value: disposition1 || 'N/A' },
+        { id: CUSTOM_FIELDS.disposition1, value: disposition1 },
         { id: CUSTOM_FIELDS.disposition2, value: disposition2 || 'N/A' },
         { id: CUSTOM_FIELDS.disposition3, value: disposition3 || 'N/A' },
         { id: CUSTOM_FIELDS.disposition4, value: disposition4 || 'N/A' }
@@ -75,19 +67,17 @@ app.post('/create-ticket', async (req, res) => {
   };
 
   try {
-    const response = await axios.post(
-      `https://${process.env.ZENDESK_SUBDOMAIN}.zendesk.com/api/v2/tickets.json`,
-      ticketData,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Basic ${Buffer.from(`${process.env.ZENDESK_EMAIL}/token:${process.env.ZENDESK_API_TOKEN}`).toString('base64')}`
-        }
+    const zendeskUrl = `https://${process.env.ZENDESK_SUBDOMAIN}.zendesk.com/api/v2/tickets.json`;
+    const auth = Buffer.from(`${process.env.ZENDESK_EMAIL}/token:${process.env.ZENDESK_API_TOKEN}`).toString('base64');
+
+    const response = await axios.post(zendeskUrl, ticketData, {
+      headers: {
+        'Authorization': `Basic ${auth}`,
+        'Content-Type': 'application/json'
       }
-    );
+    });
 
     console.log(`✅ Ticket created with ID: ${response.data.ticket.id}`);
-    console.log('📤 Zendesk response:', response.data);
     res.status(201).json({ success: true, ticketId: response.data.ticket.id });
 
   } catch (error) {
@@ -98,5 +88,5 @@ app.post('/create-ticket', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3800;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
