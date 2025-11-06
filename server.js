@@ -11,7 +11,7 @@ app.use(cors({
   origin: [
     'http://127.0.0.1:5500',            // Local testing
     'http://localhost:5500',            // Local alternate
-    'https://cc.fusionsystems.co.ke'    // Live embedded site
+    'https://mayven-angie.github.io/zendesk/'    // Live embedded site
   ],
   methods: ['POST'],
   allowedHeaders: ['Content-Type']
