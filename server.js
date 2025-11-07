@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // server.js
 const express = require('express');
 const axios = require('axios');
@@ -185,4 +184,4 @@ app.post('/create-ticket', async (req, res) => {
 
 const PORT = process.env.PORT || 3800;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
->>>>>>> ccfd8a88e318318afd89be53af88748988029cf1
+
